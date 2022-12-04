@@ -13,6 +13,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.4",
     "styled-components": "^5.3.6"
   },
@@ -29,6 +30,7 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^2.2.0",
     "babel-loader": "^8.3.0",
     "husky": "^8.0.2",
