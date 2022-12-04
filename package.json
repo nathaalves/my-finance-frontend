@@ -36,5 +36,8 @@
     "husky": "^8.0.2",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
-  }
+  },
+  "files": [
+    "src/assets/styles/themes/styles.d.ts"
+  ]
 }
