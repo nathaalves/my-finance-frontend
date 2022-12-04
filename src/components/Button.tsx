@@ -6,7 +6,7 @@ type ButtonProps = {
   children: React.ReactNode;
 };
 
-export default function Button({ children, isActive = true }: ButtonProps) {
+export function Button({ children, isActive = true }: ButtonProps) {
   return (
     <Conatainer isActive={isActive} disabled={!isActive}>
       {isActive ? children : <Elipses />}
