@@ -1,8 +1,8 @@
 import styled, { DefaultTheme } from 'styled-components';
 
-type TextProps = {
+export interface TextProps {
   fontSize?: keyof DefaultTheme['text']['size'];
-};
+}
 
 export const Text = styled.h3<TextProps>`
   font-family: ${({ theme }) => theme.text.fontFamily.base};
