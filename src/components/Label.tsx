@@ -1,10 +1,10 @@
 import styled, { DefaultTheme } from 'styled-components';
 
-type TextProps = {
+export type LabelProps = {
   fontSize?: keyof DefaultTheme['text']['size'];
 };
 
-export const Label = styled.label<TextProps>`
+export const Label = styled.label<LabelProps>`
   font-family: ${({ theme }) => theme.text.fontFamily.base};
   font-weight: 500;
   font-size: ${({ fontSize, theme }) =>

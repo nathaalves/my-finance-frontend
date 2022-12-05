@@ -1,6 +1,6 @@
 import styled, { DefaultTheme } from 'styled-components';
 
-type LogoProps = {
+export type LogoProps = {
   fontSize?: keyof DefaultTheme['text']['size'];
 };
 

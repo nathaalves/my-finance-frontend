@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import DynamicIcon from './DynamicIcon';
+import { DynamicIcon } from './DynamicIcon';
 import { Label } from './Label';
 
-type SignInputProps = {
+export type InputProps = {
   label?: string;
   type?: string;
   name?: string;
@@ -22,7 +22,7 @@ export function Input({
   disabled = false,
   onChange,
   onIconClick,
-}: SignInputProps) {
+}: InputProps) {
   function hasOnIconClick() {
     return !!onIconClick;
   }
@@ -82,7 +82,8 @@ const InputBox = styled.input`
   font-family: ${({ theme }) => theme.text.fontFamily.base};
   font-weight: 500;
   font-size: 18px;
-  color: ${({ theme }) => theme.color.text};
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.color.input.label : theme.color.text};
 `;
 
 const InputContainer = styled.div`

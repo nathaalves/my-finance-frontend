@@ -1,11 +1,11 @@
 import { Link as RouterLink } from 'react-router-dom';
 import styled, { DefaultTheme } from 'styled-components';
 
-type TextProps = {
+export type LinkProps = {
   fontSize?: keyof DefaultTheme['text']['size'];
 };
 
-export const Link = styled(RouterLink)<TextProps>`
+export const Link = styled(RouterLink)<LinkProps>`
   text-decoration: none;
   font-family: ${({ theme }) => theme.text.fontFamily.base};
   font-size: ${({ fontSize, theme }) =>
