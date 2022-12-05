@@ -10,6 +10,6 @@ export const Text = styled.h3<TextProps>`
     fontSize ? theme.text.size[fontSize] : theme.text.size.base};
   line-height: ${({ fontSize, theme }) =>
     fontSize ? theme.text.lineHeight[fontSize] : theme.text.lineHeight.base};
-  font-weight: 700;
+  font-weight: 400;
   color: ${({ theme }) => theme.color.text};
 `;
