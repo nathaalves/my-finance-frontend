@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 import { Elipses } from '../assets/spinners/Elipses';
 
-type ButtonProps = {
+export type ButtonProps = {
   isActive?: boolean;
   children: React.ReactNode;
 };

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-type FormeFrameProps = {
+export type FormFrameProps = {
   children: React.ReactNode;
   onSubmit: () => void;
 };
 
-export function FormFrame({ children, onSubmit: callback }: FormeFrameProps) {
+export function FormFrame({ children, onSubmit: callback }: FormFrameProps) {
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     callback();
