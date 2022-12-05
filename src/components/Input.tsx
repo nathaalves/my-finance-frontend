@@ -80,7 +80,7 @@ const InputBox = styled.input`
   width: calc(100% - 14px);
   height: 25px;
   font-family: ${({ theme }) => theme.text.fontFamily.base};
-  font-weight: 500;
+  font-weight: 400;
   font-size: 18px;
   color: ${({ disabled, theme }) =>
     disabled ? theme.color.input.label : theme.color.text};
