@@ -7,6 +7,7 @@ import { Button } from '../components/Button';
 import { Logo } from '../components/Logo';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
+import { useRequest } from '../hooks/useRequest';
 
 type FormValues = {
   email: string;
@@ -20,20 +21,29 @@ export function Login() {
   });
   const [passwordState, toglePassword] = useToglePassword();
 
+  const { request, response, error, isLoading } = useRequest(
+    {
+      url: '/auth/signin',
+      method: 'post',
+      body: form,
+    },
+    true
+  );
+
   return (
     <Container>
       <LogoContainer>
         <Logo>MyFinance</Logo>
       </LogoContainer>
       <FormContainer>
-        <FormFrame onSubmit={() => {}}>
+        <FormFrame onSubmit={() => request()}>
           <Input
             label="E-mail"
-            type="email"
+            type="text"
             name="email"
             icon="MdEmail"
             value={form.email}
-            disabled={false}
+            disabled={isLoading}
             onChange={handleForm}
           />
           <Input
@@ -42,11 +52,11 @@ export function Login() {
             name="password"
             icon={passwordState.icon}
             value={form.password}
-            disabled={false}
+            disabled={isLoading}
             onChange={handleForm}
             onIconClick={toglePassword}
           />
-          <Button>Entrar</Button>
+          <Button isActive={!isLoading}>Entrar</Button>
         </FormFrame>
       </FormContainer>
       <LinkContainer>
