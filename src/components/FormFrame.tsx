@@ -11,7 +11,11 @@ export function FormFrame({ children, onSubmit: callback }: FormFrameProps) {
     callback();
   }
 
-  return <Container onSubmit={submitForm}>{children}</Container>;
+  return (
+    <Container onSubmit={submitForm} noValidate>
+      {children}
+    </Container>
+  );
 }
 
 const Container = styled.form`
