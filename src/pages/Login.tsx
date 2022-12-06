@@ -8,6 +8,7 @@ import { Logo } from '../components/Logo';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
 import { useRequest } from '../hooks/useRequest';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 type FormValues = {
   email: string;
@@ -36,7 +37,7 @@ export function Login() {
         <Logo>MyFinance</Logo>
       </LogoContainer>
       <FormContainer>
-        <FormFrame onSubmit={() => request()}>
+        <FormFrame onSubmit={request}>
           <Input
             label="E-mail"
             type="text"
@@ -56,6 +57,9 @@ export function Login() {
             onChange={handleForm}
             onIconClick={toglePassword}
           />
+          <ErrorMessageContainer>
+            {error && <ErrorMessage>E-mail ou senha inválido</ErrorMessage>}
+          </ErrorMessageContainer>
           <Button isActive={!isLoading}>Entrar</Button>
         </FormFrame>
       </FormContainer>
@@ -97,4 +101,11 @@ const LinkContainer = styled.div`
 
   margin-top: 40px;
   padding-bottom: 40px;
+`;
+
+const ErrorMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
 `;
