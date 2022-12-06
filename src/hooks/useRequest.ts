@@ -8,12 +8,20 @@ type UseRequestProps = {
   headers?: object | {};
 };
 
+type ErrorResponse = {
+  data: {
+    message: string;
+    details?: string[];
+  };
+  status: number;
+};
+
 export function useRequest(
   { url, method, body = null, headers = {} }: UseRequestProps,
   isAsync = true
 ) {
   const [response, setResponse] = useState(null);
-  const [error, setError] = useState();
+  const [error, setError] = useState<ErrorResponse>();
   const [isLoading, setIsloading] = useState(false);
 
   const config = {
@@ -32,7 +40,10 @@ export function useRequest(
         setError(undefined);
       })
       .catch((err) => {
-        setError(err.response.data);
+        setError({
+          data: err.response.data,
+          status: err.response.status,
+        });
       })
       .finally(() => {
         setIsloading(false);
