@@ -35,6 +35,9 @@ export function useRequest(
   function request() {
     setIsloading(true);
     axios(config)
+      .finally(() => {
+        setIsloading(false);
+      })
       .then((res) => {
         setResponse(res.data);
         setError(undefined);
@@ -44,9 +47,6 @@ export function useRequest(
           data: err.response.data,
           status: err.response.status,
         });
-      })
-      .finally(() => {
-        setIsloading(false);
       });
   }
 
