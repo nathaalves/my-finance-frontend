@@ -1,12 +1,5 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { useState, useEffect } from 'react';
-
-type UseRequestProps = {
-  url: string;
-  method: 'get' | 'post' | 'put' | 'delete';
-  body?: object | null;
-  headers?: object | {};
-};
 
 type ErrorResponse = {
   data: {
@@ -17,20 +10,14 @@ type ErrorResponse = {
 };
 
 export function useRequest(
-  { url, method, body = null, headers = {} }: UseRequestProps,
-  isAsync = true
+  config: Partial<AxiosRequestConfig>,
+  isAsync = false
 ) {
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState();
   const [error, setError] = useState<ErrorResponse>();
   const [isLoading, setIsloading] = useState(false);
 
-  const config = {
-    url,
-    method,
-    data: body,
-    baseURL: import.meta.env.VITE_API_CONNECTION_BASE_URL,
-    headers,
-  };
+  config.baseURL = import.meta.env.VITE_API_CONNECTION_BASE_URL;
 
   function request() {
     setIsloading(true);
