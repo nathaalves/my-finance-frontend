@@ -4,6 +4,7 @@ import * as theme from './assets/styles/themes/';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from './pages/Login';
 import { Registration } from './pages/Registration';
+import { AuthProvider } from './contexts/auth/AuthProvider';
 
 export function App() {
   return (
@@ -11,6 +12,7 @@ export function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<AuthProvider />}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
         </Routes>
