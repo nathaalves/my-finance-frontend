@@ -7,6 +7,9 @@ import { Button } from '../components/Button';
 import { Link } from '../components/Link';
 import { Logo } from '../components/Logo';
 import { Text } from '../components/Text';
+import { useRequest } from '../hooks/useRequest';
+import { ErrorMessage } from '../components/ErrorMessage';
+import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
   name: string;
@@ -24,6 +27,20 @@ export function Registration() {
   });
   const [passwordState, toglePassword] = useToglePassword();
   const [confirmPasswordState, togleConfirmPassword] = useToglePassword();
+  const navigate = useNavigate();
+
+  const { request, response, error, isLoading } = useRequest(
+    {
+      url: '/auth/signup',
+      method: 'post',
+      data: form,
+    },
+    true
+  );
+
+  if (response) {
+    navigate('/login');
+  }
 
   return (
     <Container>
@@ -31,14 +48,14 @@ export function Registration() {
         <Logo>MyFinance</Logo>
       </LogoContainer>
       <FormContainer>
-        <FormFrame onSubmit={() => {}}>
+        <FormFrame onSubmit={request}>
           <Input
             label="Nome"
             type="text"
             name="name"
             icon="MdPerson"
             value={form.name}
-            disabled={false}
+            disabled={isLoading}
             onChange={handleForm}
           />
           <Input
@@ -47,7 +64,7 @@ export function Registration() {
             name="email"
             icon="MdEmail"
             value={form.email}
-            disabled={false}
+            disabled={isLoading}
             onChange={handleForm}
           />
           <Input
@@ -56,26 +73,35 @@ export function Registration() {
             name="password"
             icon={passwordState.icon}
             value={form.password}
-            disabled={false}
+            disabled={isLoading}
             onChange={handleForm}
             onIconClick={toglePassword}
           />
           <Input
             label="Confirmar senha"
             type={confirmPasswordState.type}
-            name="password"
+            name="confirm_password"
             icon={confirmPasswordState.icon}
-            value={form.password}
-            disabled={false}
+            value={form.confirm_password}
+            disabled={isLoading}
             onChange={handleForm}
             onIconClick={togleConfirmPassword}
           />
-          <Button>Entrar</Button>
+          <ErrorMessageContainer>
+            {error?.data.details &&
+              error?.data.details.map((details) => (
+                <ErrorMessage>{details}</ErrorMessage>
+              ))}
+            {error?.status === 409 && (
+              <ErrorMessage>Usuário já cadastrado.</ErrorMessage>
+            )}
+          </ErrorMessageContainer>
+          <Button isActive={!isLoading}>Registre-se</Button>
         </FormFrame>
       </FormContainer>
       <LinkContainer>
         <Text>Já possui uma conta?</Text>
-        <Link to="/login">Faa login</Link>
+        <Link to="/login">Faça login</Link>
       </LinkContainer>
     </Container>
   );
@@ -111,4 +137,11 @@ const LinkContainer = styled.div`
 
   margin-top: 40px;
   padding-bottom: 40px;
+`;
+
+const ErrorMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
 `;
