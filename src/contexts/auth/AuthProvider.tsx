@@ -1,7 +1,6 @@
 import { AuthContext } from './AuthContext';
 import { Outlet } from 'react-router-dom';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useRequest } from '../../hooks/useRequest';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -39,7 +38,6 @@ export function AuthProvider() {
           })
         );
         setToken(res.data);
-        navigate('/home');
       })
       .catch((err) => {
         localStorage.removeItem('tokens');
@@ -49,7 +47,7 @@ export function AuthProvider() {
 
   return (
     <AuthContext.Provider value={{ token }}>
-      <Outlet />
+      {token ? <Outlet /> : <></>}
     </AuthContext.Provider>
   );
 }
