@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
 type AuthContextType = {
-  token: string | null;
+  token: string;
 };
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType>({ token: '' });
 
 export { AuthContext };
