@@ -7,6 +7,9 @@ import { Button } from '../components/Button';
 import { Logo } from '../components/Logo';
 import { Text } from '../components/Text';
 import { Link } from '../components/Link';
+import { useRequest } from '../hooks/useRequest';
+import { ErrorMessage } from '../components/ErrorMessage';
+import { Navigate } from 'react-router-dom';
 
 type FormValues = {
   email: string;
@@ -20,40 +23,62 @@ export function Login() {
   });
   const [passwordState, toglePassword] = useToglePassword();
 
+  const { request, response, error, isLoading } = useRequest(
+    {
+      url: '/auth/signin',
+      method: 'post',
+      data: form,
+    },
+    true
+  );
+
+  if (response) {
+    localStorage.setItem('tokens', JSON.stringify(response));
+  }
+
   return (
-    <Container>
-      <LogoContainer>
-        <Logo>MyFinance</Logo>
-      </LogoContainer>
-      <FormContainer>
-        <FormFrame onSubmit={() => {}}>
-          <Input
-            label="E-mail"
-            type="email"
-            name="email"
-            icon="MdEmail"
-            value={form.email}
-            disabled={false}
-            onChange={handleForm}
-          />
-          <Input
-            label="Senha"
-            type={passwordState.type}
-            name="password"
-            icon={passwordState.icon}
-            value={form.password}
-            disabled={false}
-            onChange={handleForm}
-            onIconClick={toglePassword}
-          />
-          <Button>Entrar</Button>
-        </FormFrame>
-      </FormContainer>
-      <LinkContainer>
-        <Text>Ainda não possui uma conta?</Text>
-        <Link to="/registration">Cadastre-se</Link>
-      </LinkContainer>
-    </Container>
+    <>
+      {!response ? (
+        <Container>
+          <LogoContainer>
+            <Logo>MyFinance</Logo>
+          </LogoContainer>
+          <FormContainer>
+            <FormFrame onSubmit={request}>
+              <Input
+                label="E-mail"
+                type="text"
+                name="email"
+                icon="MdEmail"
+                value={form.email}
+                disabled={isLoading}
+                onChange={handleForm}
+              />
+              <Input
+                label="Senha"
+                type={passwordState.type}
+                name="password"
+                icon={passwordState.icon}
+                value={form.password}
+                disabled={isLoading}
+                onChange={handleForm}
+                onIconClick={toglePassword}
+              />
+              <ErrorMessageContainer>
+                {error && <ErrorMessage>E-mail ou senha inválido</ErrorMessage>}
+              </ErrorMessageContainer>
+              <Button isActive={!isLoading}>Entrar</Button>
+            </FormFrame>
+          </FormContainer>
+          <LinkContainer>
+            <Text>Ainda não possui uma conta?</Text>
+            <Link to="/registration">Registre-se</Link>
+          </LinkContainer>
+        </Container>
+      ) : (
+        <Navigate to="/" />
+      )}
+    </>
   );
 }
 
@@ -87,4 +112,11 @@ const LinkContainer = styled.div`
 
   margin-top: 40px;
   padding-bottom: 40px;
+`;
+
+const ErrorMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
 `;
