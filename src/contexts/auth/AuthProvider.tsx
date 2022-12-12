@@ -11,7 +11,7 @@ type Credentials = {
 
 export function AuthProvider() {
   const navigate = useNavigate();
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState('');
   const credentials: Credentials | null = localStorage.getItem('tokens')
     ? JSON.parse(localStorage.getItem('tokens') as string)
     : null;
