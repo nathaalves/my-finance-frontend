@@ -26,3 +26,8 @@ export async function requestAccessToken(): Promise<AccessToken> {
 export async function requestRegistration(body: SignUpBody): Promise<void> {
   await instance.post<SignUpBody>('/auth/signup', body);
 }
+
+export async function requestLogin(body: LoginBody): Promise<RefreshToken> {
+  const response = await instance.post<RefreshToken>('/auth/signin', body);
+  return response.data;
+}
