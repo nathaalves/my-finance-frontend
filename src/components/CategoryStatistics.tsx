@@ -33,7 +33,7 @@ export function CategoryStatistics({
           <Text fontSize="sm" bold>
             R$ {value}
           </Text>
-          <Text fontSize="sm">{percentage}%</Text>
+          <Text fontSize="sm">{percentage.toFixed(2)}%</Text>
         </Values>
       </StatisticsContainer>
       <ArrowButton />
