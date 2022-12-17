@@ -2,31 +2,43 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './assets/styles/GlobalStyles';
 import * as theme from './assets/styles/themes/';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Login } from './pages/Login';
+import { Login } from './pages/Login/inidex';
 import { Registration } from './pages/Registration';
-import { AuthProvider } from './contexts/auth/AuthProvider';
+import { PrivateRoute } from './routes/PrivateRoute';
 import { Home } from './pages/Home';
-import { ContentProvider } from './contexts/content/ContentProvider';
+import { ContentLoader } from './routes/ContentLoader';
 import { Statistics } from './pages/Home/Statistics';
+import { AddTransaction } from './pages/AddTransaction';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+const queryClient = new QueryClient();
 
 export function App() {
   return (
-    <ThemeProvider theme={theme['purple']}>
-      <GlobalStyles />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AuthProvider />}>
-            <Route path="/" element={<ContentProvider />}>
-              <Route path="/" element={<Home />}>
-                <Route path="/entradas" element={<Statistics />} />
-                <Route path="/saidas" element={<Statistics />} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme['purple']}>
+        <GlobalStyles />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/" element={<ContentLoader />}>
+                <Route path="/" element={<Home />}>
+                  <Route path="/entradas" element={<Statistics />} />
+                  <Route path="/saidas" element={<Statistics />} />
+                </Route>
+                <Route
+                  path="/:categoryType/adicionar"
+                  element={<AddTransaction />}
+                />
               </Route>
             </Route>
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
