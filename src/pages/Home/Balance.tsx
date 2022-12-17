@@ -6,7 +6,8 @@ import { formatMoney } from '../../utils/formatMoney';
 export function Balance() {
   const { content } = useContentQuery();
 
-  const balance = (content?.inflow.total || 0) - (content?.outflow.total || 0);
+  const balance =
+    (content?.inflow.totalValue || 0) - (content?.outflow.totalValue || 0);
 
   return (
     <Container>
