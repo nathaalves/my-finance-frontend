@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FormFrame, Input, Button } from '../../components';
-import { useLogin } from '../../hooks/queries';
+import { useLoginMutation } from '../../hooks/mutations/useLoginMutation';
 import { useForm } from '../../hooks/useForm';
 import { useToglePassword } from '../../hooks/useTogglePassword';
 import { LoginBody } from '../../types';
@@ -13,7 +13,7 @@ export function Form() {
     password: '',
   });
 
-  const { isLoading, isError, mutate } = useLogin(form);
+  const { isLoading, isError, mutate } = useLoginMutation(form);
 
   return (
     <Container>
