@@ -21,7 +21,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  padding: 50px 16px 0 16px;
+  padding: 30px 16px 0 16px;
 `;
 
 const BackgrounHeader = styled.header`
