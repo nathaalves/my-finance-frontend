@@ -1,7 +1,5 @@
 export * from './Button';
 export * from './CategoryIcon';
-export * from './CategoryStatistics';
-export * from './Chart';
 export * from './DynamicIcon';
 export * from './ErrorMessage';
 export * from './FormFrame';
