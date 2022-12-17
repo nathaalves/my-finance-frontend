@@ -21,22 +21,19 @@ export function CategoryIcon({
   );
 }
 
-type ContainerProps = {
-  color: string;
-};
-
-const Container = styled.div<ContainerProps>`
+const Container = styled.div<Partial<CategoryIconProps>>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-
+  width: ${({ size }) => (size ? size : '60px')};
+  height: ${({ size }) => (size ? size : '60px')};
+  border: ${({ isActive, color }) =>
+    isActive ? `4px solid ${color}` : 'none'};
   border-radius: 10px;
   background: ${({ color }) => `${color}33`};
 
   svg {
-    font-size: ${({ theme }) => theme.text.size['3xl']};
+    font-size: calc(${({ size }) => (size ? size : '60px')} * 0.7);
     color: ${({ color }) => color};
   }
 `;
