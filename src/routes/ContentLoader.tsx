@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { useContent } from '../hooks/queries/useContent';
+import { useContentQuery } from '../hooks/queries/useContentQuery';
 
 export function ContentLoader() {
-  const { isSuccess } = useContent();
+  const { isSuccess } = useContentQuery();
 
   return <>{isSuccess ? <Outlet /> : <></>}</>;
 }
