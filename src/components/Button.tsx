@@ -3,12 +3,21 @@ import { Elipses } from '../assets/spinners/Elipses';
 
 export type ButtonProps = {
   isActive?: boolean;
+  onClick?: () => void;
   children: React.ReactNode;
 };
 
-export function Button({ children, isActive = true }: ButtonProps) {
+export function Button({
+  children,
+  onClick: callback,
+  isActive = true,
+}: ButtonProps) {
+  function handleClick() {
+    callback && callback();
+  }
+
   return (
-    <Conatainer isActive={isActive} disabled={!isActive}>
+    <Conatainer onClick={handleClick} isActive={isActive} disabled={!isActive}>
       {isActive ? children : <Elipses />}
     </Conatainer>
   );
@@ -27,7 +36,7 @@ const Conatainer = styled.button<ContainerProps>`
   align-items: center;
 
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   margin: 25px auto 0 auto;
 
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};

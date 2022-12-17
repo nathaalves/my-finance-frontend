@@ -1,17 +1,13 @@
-import { useContext } from 'react';
 import styled from 'styled-components';
-import { DynamicIcon } from '../../components/DynamicIcon';
-import { Title } from '../../components/Title';
-import {
-  ContentContext,
-  ContentContextType,
-} from '../../contexts/content/ContentContext';
+import { DynamicIcon, Title } from '../../components';
+import { useContentQuery } from '../../hooks/queries/useContentQuery';
 import { formatMoney } from '../../utils/formatMoney';
 
 export function Balance() {
-  const { content } = useContext(ContentContext) as ContentContextType;
+  const { content } = useContentQuery();
 
-  const balance = (content?.inflow.total || 0) - (content?.outflow.total || 0);
+  const balance =
+    (content?.inflow.totalValue || 0) - (content?.outflow.totalValue || 0);
 
   return (
     <Container>

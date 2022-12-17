@@ -1,0 +1,33 @@
+import type {
+  RefreshToken,
+  LoginBody,
+  AccessToken,
+  SignUpBody,
+} from '../../types';
+import { instance } from './instance';
+
+export async function requestAccessToken(): Promise<AccessToken> {
+  const refreshToken = localStorage.getItem('refresh-token')
+    ? JSON.parse(localStorage.getItem('refresh-token') as string)
+    : null;
+
+  const response = await instance.post<AccessToken>(
+    '/auth/reauthenticate',
+    null,
+    {
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    }
+  );
+  return response.data;
+}
+
+export async function requestRegistration(body: SignUpBody): Promise<void> {
+  await instance.post<SignUpBody>('/auth/signup', body);
+}
+
+export async function requestLogin(body: LoginBody): Promise<RefreshToken> {
+  const response = await instance.post<RefreshToken>('/auth/signin', body);
+  return response.data;
+}

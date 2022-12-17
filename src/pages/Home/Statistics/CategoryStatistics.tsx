@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Text } from './Text';
-import { CategoryIcon } from './CategoryIcon';
+import { Text } from '../../../components/Text';
+import { CategoryIcon } from '../../../components/CategoryIcon';
 import { MdArrowForwardIos } from 'react-icons/md';
 
 type CategoryStatisticsProps = {
@@ -33,7 +33,7 @@ export function CategoryStatistics({
           <Text fontSize="sm" bold>
             R$ {value}
           </Text>
-          <Text fontSize="sm">{percentage}%</Text>
+          <Text fontSize="sm">{percentage.toFixed(2)}%</Text>
         </Values>
       </StatisticsContainer>
       <ArrowButton />
