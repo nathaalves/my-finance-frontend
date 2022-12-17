@@ -2,6 +2,7 @@ import styled, { DefaultTheme } from 'styled-components';
 
 export interface TextProps {
   fontSize?: keyof DefaultTheme['text']['size'];
+  color?: string;
   bold?: boolean;
 }
 
@@ -12,5 +13,5 @@ export const Text = styled.h3<TextProps>`
   line-height: ${({ fontSize, theme }) =>
     fontSize ? theme.text.lineHeight[fontSize] : theme.text.lineHeight.base};
   font-weight: ${({ bold }) => (bold ? 500 : 400)};
-  color: ${({ theme }) => theme.color.text};
+  color: ${({ color, theme }) => color || theme.color.text};
 `;
