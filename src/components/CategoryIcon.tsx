@@ -4,11 +4,18 @@ import { DynamicIcon } from './DynamicIcon';
 type CategoryIconProps = {
   name: string;
   color: string;
+  size?: string;
+  isActive?: boolean;
 };
 
-export function CategoryIcon({ name, color }: CategoryIconProps) {
+export function CategoryIcon({
+  name,
+  color,
+  size,
+  isActive,
+}: CategoryIconProps) {
   return (
-    <Container color={color}>
+    <Container color={color} size={size} isActive={isActive}>
       <DynamicIcon name={name} />
     </Container>
   );
