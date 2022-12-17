@@ -15,6 +15,7 @@ export type ContentTypes = 'inflow' | 'outflow';
 export type Content = {
   [key in ContentTypes]: {
     categories: Category[];
-    total: number;
+    totalValue: number;
+    transactionsAmount: number;
   };
 };
