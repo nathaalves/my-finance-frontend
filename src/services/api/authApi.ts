@@ -22,3 +22,7 @@ export async function requestAccessToken(): Promise<AccessToken> {
   );
   return response.data;
 }
+
+export async function requestRegistration(body: SignUpBody): Promise<void> {
+  await instance.post<SignUpBody>('/auth/signup', body);
+}
