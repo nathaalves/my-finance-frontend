@@ -36,7 +36,7 @@ const Conatainer = styled.button<ContainerProps>`
   align-items: center;
 
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   margin: 25px auto 0 auto;
 
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};
