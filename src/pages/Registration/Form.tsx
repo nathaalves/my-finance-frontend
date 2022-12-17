@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FormFrame, Input, Button } from '../../components';
-import { useRegistration } from '../../hooks/queries/useRegistration';
+import { useRegistrationMutation } from '../../hooks/mutations/useRegistrationMutation';
 import { useForm } from '../../hooks/useForm';
 import { useToglePassword } from '../../hooks/useTogglePassword';
 import { ErrorMessageContainer } from './ErrorMessageContainer';
@@ -15,7 +15,7 @@ export function Form() {
     confirm_password: '',
   });
 
-  const { isLoading, isError, error, mutate } = useRegistration(form);
+  const { isLoading, isError, error, mutate } = useRegistrationMutation(form);
 
   return (
     <Container>
