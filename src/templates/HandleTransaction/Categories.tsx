@@ -32,7 +32,9 @@ export function Categories({ categoryId, handleForm }: CategoriesProps) {
                 size="70px"
                 isActive={categoryId === category.id}
               />
-              <Text bold>{category.name}</Text>
+              <CategoryNameContainer>
+                <Text bold>{category.name}</Text>
+              </CategoryNameContainer>
             </Category>
           );
         })}
@@ -42,10 +44,15 @@ export function Categories({ categoryId, handleForm }: CategoriesProps) {
 }
 
 const Category = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 70px;
+  text-overflow: ellipsis;
   gap: 4px;
+`;
+
+const CategoryNameContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
 `;
 
 const Container = styled.div`
@@ -54,7 +61,8 @@ const Container = styled.div`
 
 const CategoriesList = styled.div`
   display: flex;
-  overflow-x: scroll;
-  gap: 16px;
+  flex-wrap: wrap;
+  min-height: 220px;
+  gap: calc((100% - 4 * 70px) / 3);
   margin-top: 12px;
 `;
