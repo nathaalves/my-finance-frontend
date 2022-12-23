@@ -6,4 +6,6 @@ export type TransactionBody = {
   categoryId: string;
 };
 
-export type Transaction = Omit<TransactionBody, 'categoryId'>;
+export type TransactionType = TransactionBody & {
+  id: string;
+};
