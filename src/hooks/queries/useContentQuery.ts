@@ -1,13 +1,16 @@
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { requestContent } from '../../services/api';
 
 export function useContentQuery() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const { data: content, isSuccess } = useQuery('content', requestContent, {
     onSuccess: () => {
-      navigate('/entradas');
+      if (pathname === '/') {
+        navigate('/entradas');
+      }
     },
     onError: () => {
       navigate('/login');
