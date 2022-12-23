@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './assets/styles/GlobalStyles';
 import * as theme from './assets/styles/themes/';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Login } from './pages/Login/inidex';
+import { Login } from './pages/Login';
 import { Registration } from './pages/Registration';
 import { PrivateRoute } from './routes/PrivateRoute';
 import { Home } from './pages/Home';
