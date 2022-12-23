@@ -13,6 +13,26 @@ export function Statistics() {
   const categoryType =
     pathname === '/entradas' ? content?.inflow : content?.outflow;
 
+  const categories = () => {
+    const categories: React.ReactNode[] = [];
+    categoryType?.categories.forEach((category) => {
+      if (category.count > 0) {
+        categories.push(
+          <CategoryStatistics
+            key={category.id}
+            categoryId={category.id}
+            icon={category.icon}
+            color={category.iconColor}
+            category={category.name}
+            value={formatMoney(category.sum)}
+            percentage={(category.sum / (categoryType?.totalValue || 1)) * 100}
+          />
+        );
+      }
+    });
+    return categories;
+  };
+
   return (
     <>
       <ChartContainer />
@@ -21,22 +41,7 @@ export function Statistics() {
           Categorias
         </Text>
         {categoryType?.transactionsAmount ? (
-          <CategoriesList>
-            {categoryType?.categories.map((category) => {
-              return (
-                <CategoryStatistics
-                  key={category.id}
-                  icon={category.icon}
-                  color={category.iconColor}
-                  category={category.name}
-                  value={formatMoney(category.sum)}
-                  percentage={
-                    (category.sum / (categoryType?.totalValue || 1)) * 100
-                  }
-                />
-              );
-            })}
-          </CategoriesList>
+          <CategoriesList>{categories()}</CategoriesList>
         ) : (
           <TextContainer>
             <Text fontSize="lg">Comece a adicionar transações</Text>
