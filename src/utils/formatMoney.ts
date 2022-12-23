@@ -1,4 +1,6 @@
-export function formatMoney(value: number): string {
+export function formatMoney(value: number | undefined): string {
+  if (value === undefined) return '0';
+
   let unit = '';
   value /= 100;
 
