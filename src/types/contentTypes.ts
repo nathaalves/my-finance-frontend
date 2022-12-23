@@ -1,11 +1,11 @@
-import { Transaction } from './transactionTypes';
+import { TransactionType } from './transactionTypes';
 
 export type Category = {
   id: string;
   name: string;
   icon: string;
   iconColor: string;
-  transactions: Transaction[];
+  transactions: TransactionType[];
   sum: number;
   count: number;
 };
