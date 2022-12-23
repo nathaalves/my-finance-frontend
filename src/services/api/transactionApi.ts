@@ -8,3 +8,10 @@ export async function addTransaction(body: TransactionBody): Promise<void> {
 export async function deleteTransaction(id: string): Promise<void> {
   await instance.delete(`/transaction/delete/${id}`);
 }
+
+export async function updateTransaction(
+  id: string,
+  body: TransactionBody
+): Promise<void> {
+  await instance.put(`/transaction/update/${id}`, body);
+}
