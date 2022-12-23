@@ -4,16 +4,19 @@ import { Text } from '../../components/Text';
 
 type DescriptionProps = {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleForm: (key: string, value: string) => void;
 };
 
-export function Description({ value, onChange }: DescriptionProps) {
+export function Description({ value, handleForm }: DescriptionProps) {
   return (
     <Container>
       <Text fontSize="xl" bold>
         Descrição
       </Text>
-      <Input value={value} onChange={onChange} />
+      <Input
+        value={value}
+        onChange={(e) => handleForm('description', e.target.value)}
+      />
     </Container>
   );
 }

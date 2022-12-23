@@ -11,6 +11,8 @@ import { Statistics } from './pages/Home/Statistics';
 import { AddTransaction } from './pages/AddTransaction';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { CategoryTransactions } from './pages/CategoryTransactions';
+import { EditTransaction } from './pages/EditTransaction';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,14 @@ export function App() {
                 <Route
                   path="/:categoryType/adicionar"
                   element={<AddTransaction />}
+                />
+                <Route
+                  path="/:categoryType/editar"
+                  element={<EditTransaction />}
+                />
+                <Route
+                  path="/:categoryType/categoria/:categoryId"
+                  element={<CategoryTransactions />}
                 />
               </Route>
             </Route>

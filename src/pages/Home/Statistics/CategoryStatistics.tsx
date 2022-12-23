@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import { Text } from '../../../components/Text';
 import { CategoryIcon } from '../../../components/CategoryIcon';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type CategoryStatisticsProps = {
   icon: string;
   color: string;
   category: string;
+  categoryId: string;
   value: string;
   percentage: number;
 };
@@ -15,11 +17,15 @@ export function CategoryStatistics({
   icon,
   color,
   category,
+  categoryId,
   value,
   percentage,
 }: CategoryStatisticsProps) {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   return (
-    <Container>
+    <Container onClick={() => navigate(`${pathname}/categoria/${categoryId}`)}>
       <CategoryIconContainer>
         <CategoryIcon name={icon} color={color} />
       </CategoryIconContainer>

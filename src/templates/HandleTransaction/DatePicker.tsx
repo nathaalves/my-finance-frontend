@@ -4,8 +4,11 @@ import ReactDatePicker, { CalendarContainer } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type DatePickerProps = {
-  value: Date;
-  onChange: (value: Date) => void;
+  value: Date | null;
+  handleForm: (
+    key: string,
+    value: Date | [Date | null, Date | null] | null
+  ) => void;
 };
 
 type MyContainerPropsType = {
@@ -13,7 +16,7 @@ type MyContainerPropsType = {
   children: React.ReactNode;
 };
 
-export function DatePicker({ value, onChange }: DatePickerProps) {
+export function DatePicker({ value, handleForm }: DatePickerProps) {
   const MyContainer = ({ className, children }: MyContainerPropsType) => {
     return (
       <Calendar>
@@ -32,7 +35,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
         <Input>
           <StyledDatePicker
             selected={value}
-            onChange={onChange}
+            onChange={(date) => handleForm('date', date)}
             calendarContainer={MyContainer}
             dateFormat="dd/MM/yyyy"
           />

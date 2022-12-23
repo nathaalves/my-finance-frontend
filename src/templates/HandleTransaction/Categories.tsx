@@ -6,10 +6,10 @@ import { useContentQuery } from '../../hooks/queries/useContentQuery';
 
 type CategoriesProps = {
   categoryId: string;
-  setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  handleForm: (key: string, value: string) => void;
 };
 
-export function Categories({ categoryId, setCategoryId }: CategoriesProps) {
+export function Categories({ categoryId, handleForm }: CategoriesProps) {
   const { categoryType } = useParams();
   const { content } = useContentQuery();
   const type = categoryType === 'entradas' ? content?.inflow : content?.outflow;
@@ -24,7 +24,7 @@ export function Categories({ categoryId, setCategoryId }: CategoriesProps) {
           return (
             <Category
               key={category.id}
-              onClick={() => setCategoryId(category.id)}
+              onClick={() => handleForm('categoryId', category.id)}
             >
               <CategoryIcon
                 name={category.icon}

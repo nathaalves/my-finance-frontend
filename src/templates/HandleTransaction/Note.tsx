@@ -3,16 +3,19 @@ import { Text } from '../../components/Text';
 
 type NoteProps = {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleForm: (key: string, value: string) => void;
 };
 
-export function Note({ value, onChange }: NoteProps) {
+export function Note({ value, handleForm }: NoteProps) {
   return (
     <Container>
       <Text fontSize="xl" bold>
         Nota
       </Text>
-      <TextArea value={value} onChange={onChange} />
+      <TextArea
+        value={value}
+        onChange={(e) => handleForm('note', e.target.value)}
+      />
     </Container>
   );
 }

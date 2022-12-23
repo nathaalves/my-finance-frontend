@@ -2,16 +2,28 @@ import { ImArrowLeft2 } from 'react-icons/im';
 import { Text } from '../../components';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useContentQuery } from '../../hooks/queries/useContentQuery';
+import { formatMoney } from '../../utils/formatMoney';
 
-export function Header() {
+type HeaderProps = {
+  name: string | undefined;
+  value: number | undefined;
+};
+
+export function Header({ name, value }: HeaderProps) {
   const navigate = useNavigate();
   const { categoryType } = useParams();
 
   return (
     <Container>
-      <Text fontSize="2xl" color="#FFFFFF" bold>
-        Adicionar {categoryType === 'entradas' ? 'entrada' : 'saída'}
-      </Text>
+      <TitleContainer>
+        <Text fontSize="2xl" color="#FFFFFF" bold>
+          {name}
+        </Text>
+        <Text fontSize="2xl" color="#FFFFFF" bold>
+          R$ {formatMoney(value)}
+        </Text>
+      </TitleContainer>
       <BackArrow onClick={() => navigate(-1)} />
     </Container>
   );
@@ -29,6 +41,12 @@ const Container = styled.div`
     ${({ theme }) => theme.color.secondary},
     ${({ theme }) => theme.color.primary}
   );
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const BackArrow = styled(ImArrowLeft2)`
