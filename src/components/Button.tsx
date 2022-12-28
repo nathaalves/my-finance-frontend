@@ -36,7 +36,7 @@ const Conatainer = styled.button<ContainerProps>`
   align-items: center;
 
   width: 100%;
-  min-height: 60px;
+  height: 60px;
   margin: 25px auto 0 auto;
 
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};
@@ -46,6 +46,7 @@ const Conatainer = styled.button<ContainerProps>`
     ${({ theme }) => theme.color.primary}
   );
   border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
 
   font-family: 'Roboto', sans-serif;
@@ -55,4 +56,8 @@ const Conatainer = styled.button<ContainerProps>`
   color: ${({ theme }) => theme.color.button.text};
 
   cursor: ${(props) => (props.isActive ? 'pointer' : 'default')};
+
+  &:hover {
+    opacity: ${(props) => (props.isActive ? 0.9 : 0.5)};
+  }
 `;
