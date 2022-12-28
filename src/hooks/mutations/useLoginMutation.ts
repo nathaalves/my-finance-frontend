@@ -7,8 +7,7 @@ export function useLoginMutation(data: LoginBody) {
   const navigate = useNavigate();
 
   const { isLoading, isError, mutate } = useMutation(() => requestLogin(data), {
-    onSuccess: (auth) => {
-      localStorage.setItem('refresh-token', JSON.stringify(auth.refreshToken));
+    onSuccess: () => {
       navigate('/entradas');
     },
   });
