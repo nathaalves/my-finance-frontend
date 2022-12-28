@@ -1,9 +1,8 @@
-import { ImArrowLeft2 } from 'react-icons/im';
 import { Text } from '../../components';
 import styled from 'styled-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useContentQuery } from '../../hooks/queries/useContentQuery';
+import { useNavigate } from 'react-router-dom';
 import { formatMoney } from '../../utils/formatMoney';
+import { BackArrow } from '../../components/BackArrow';
 
 type HeaderProps = {
   name: string | undefined;
@@ -12,7 +11,6 @@ type HeaderProps = {
 
 export function Header({ name, value }: HeaderProps) {
   const navigate = useNavigate();
-  const { categoryType } = useParams();
 
   return (
     <Container>
@@ -47,12 +45,4 @@ const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const BackArrow = styled(ImArrowLeft2)`
-  font-size: ${({ theme }) => theme.text.size['2xl']};
-  color: #ffffff;
-
-  position: absolute;
-  left: 16px; ;
 `;

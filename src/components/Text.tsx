@@ -14,4 +14,6 @@ export const Text = styled.h3<TextProps>`
     fontSize ? theme.text.lineHeight[fontSize] : theme.text.lineHeight.base};
   font-weight: ${({ bold }) => (bold ? 500 : 400)};
   color: ${({ color, theme }) => color || theme.color.text};
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
