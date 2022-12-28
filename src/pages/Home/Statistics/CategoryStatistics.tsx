@@ -52,7 +52,25 @@ const Container = styled.div`
   align-items: center;
   padding: 12px 0;
   border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  position: relative;
   cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: #cccccc1a;
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+    z-index: -1;
+  }
+  &:hover::before {
+    transform: scaleX(1);
+  }
 `;
 
 const CategoryIconContainer = styled.div`
