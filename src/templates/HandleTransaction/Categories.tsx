@@ -46,6 +46,7 @@ export function Categories({ categoryId, handleForm }: CategoriesProps) {
 
 const Category = styled.div`
   width: 70px;
+  margin-bottom: 8px;
   text-overflow: ellipsis;
   gap: 4px;
   cursor: pointer;
@@ -69,7 +70,7 @@ const Container = styled.div`
 const CategoriesList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  min-height: 220px;
+  max-height: 220px;
   gap: calc((100% - 4 * 70px) / 3);
   margin-top: 12px;
 `;
