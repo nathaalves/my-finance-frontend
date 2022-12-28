@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ImArrowLeft2 } from 'react-icons/im';
 import { Text } from '../../components';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { BackArrow } from '../../components/BackArrow';
 
 export function Header() {
   const navigate = useNavigate();
@@ -32,13 +32,4 @@ const Container = styled.div`
     ${({ theme }) => theme.color.primary}
   );
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
-const BackArrow = styled(ImArrowLeft2)`
-  box-sizing: unset;
-  font-size: ${({ theme }) => theme.text.size['2xl']};
-  color: #ffffff;
-  padding: 5px;
-  position: absolute;
-  left: 16px; ;
 `;
