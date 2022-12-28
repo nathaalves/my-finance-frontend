@@ -60,6 +60,23 @@ export function Transaction({
 const Container = styled.div`
   padding-bottom: 6px;
   border-bottom: 1px solid #ccc;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: #cccccc1a;
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+    z-index: -1;
+  }
+  &:hover::before {
+    transform: scaleX(1);
+  }
 `;
 
 const IconsContainer = styled.div`
