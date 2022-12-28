@@ -25,6 +25,7 @@ export function Categories({ categoryId, handleForm }: CategoriesProps) {
             <Category
               key={category.id}
               onClick={() => handleForm('categoryId', category.id)}
+              color={category.iconColor}
             >
               <CategoryIcon
                 name={category.icon}
@@ -47,6 +48,12 @@ const Category = styled.div`
   width: 70px;
   text-overflow: ellipsis;
   gap: 4px;
+  cursor: pointer;
+
+  &:hover > div:first-child {
+    border: 4px solid ${({ color }) => color};
+    transition: border 0.2s;
+  }
 `;
 
 const CategoryNameContainer = styled.div`
