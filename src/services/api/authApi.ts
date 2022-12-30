@@ -27,3 +27,9 @@ export async function requestLogin(body: LoginBody): Promise<RefreshToken> {
   });
   return response.data;
 }
+
+export async function requestLogout() {
+  await instance.get('/auth/logout', {
+    withCredentials: true,
+  });
+}
