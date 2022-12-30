@@ -2,21 +2,23 @@ import styled from 'styled-components';
 import { NavBar } from './NavBar';
 import { Balance } from './Balance';
 import { Outlet } from 'react-router-dom';
+import { SideMenu } from './SideMenu';
 
 export function Home() {
   return (
     <>
       <BackgrounHeader />
-      <Container>
+      <MainContainer>
         <Balance />
         <NavBar />
         <Outlet />
-      </Container>
+      </MainContainer>
+      <SideMenu />
     </>
   );
 }
 
-const Container = styled.div`
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
