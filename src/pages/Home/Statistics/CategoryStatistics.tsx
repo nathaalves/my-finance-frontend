@@ -63,7 +63,7 @@ const Container = styled.div`
     left: 0;
     right: 0;
     height: 100%;
-    background-color: #cccccc1a;
+    background-color: rgba(204, 204, 204, 0.205);
     transition: transform 300ms ease-in-out;
     transform: scaleX(0);
     z-index: -1;
