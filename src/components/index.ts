@@ -10,3 +10,4 @@ export * from './Logo';
 export * from './NavButton';
 export * from './Text';
 export * from './Title';
+export * from './SideMenuButton';
