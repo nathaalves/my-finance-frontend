@@ -11,6 +11,7 @@ export function useAccessTokenQuery() {
     onError: () => {
       navigate('/login');
     },
+    retry: false,
     staleTime: Infinity,
   });
   return { isSuccess };
