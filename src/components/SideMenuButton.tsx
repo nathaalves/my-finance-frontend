@@ -20,7 +20,7 @@ const Container = styled.div`
 
   width: 100%;
   height: 40px;
-  padding: 0 16px;
+  padding: 0 5%;
   gap: 16px;
   overflow-x: hidden;
 
