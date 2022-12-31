@@ -7,6 +7,7 @@ export type DynamicIconProps = {
 
 export function DynamicIcon({ name }: DynamicIconProps): JSX.Element {
   if (!name) return <></>;
+  if (!Icon[name as keyof IconType]) return <></>;
 
   const IconComponent = Icon[name as keyof IconType] as IconType;
 
