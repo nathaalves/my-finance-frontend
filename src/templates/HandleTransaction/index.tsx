@@ -7,6 +7,7 @@ import { Header } from './Header';
 import { Value } from './Value';
 import { Categories } from './Categories';
 import { TransactionBody } from '../../types';
+import { FormFrame } from '../../components';
 
 type HandleTransactionProps = {
   form: TransactionBody;
@@ -32,12 +33,14 @@ export function HandleTransaction({
     <Container>
       <Header />
       <ScrollContainer>
-        <Value value={form.value} handleForm={handleForm} />
-        <Categories categoryId={form.categoryId} handleForm={handleForm} />
-        <Description value={form.description} handleForm={handleForm} />
-        <DatePicker value={form.date} handleForm={handleForm} />
-        <Note value={form.note} handleForm={handleForm} />
-        <Button onClick={() => mutate()}>Salvar</Button>
+        <FormFrame onSubmit={mutate}>
+          <Value value={form.value} handleForm={handleForm} />
+          <Categories categoryId={form.categoryId} handleForm={handleForm} />
+          <Description value={form.description} handleForm={handleForm} />
+          <DatePicker value={form.date} handleForm={handleForm} />
+          <Note value={form.note} handleForm={handleForm} />
+          <Button>Salvar</Button>
+        </FormFrame>
       </ScrollContainer>
     </Container>
   );
