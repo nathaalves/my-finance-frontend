@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { Text } from '../../components';
+import { ConfirmModal, Text } from '../../components';
 import { TransactionType } from '../../types';
 import { isoDateToLocalDate } from '../../utils/isoDateToLocalDate';
 import { formatMoney } from '../../utils/formatMoney';
 import { MdMoreVert, MdClear, MdEdit } from 'react-icons/md';
 import { useDeleteTransactionMutation } from '../../hooks/mutations/useDeleteTransactionMutation';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 type TransactionProps = TransactionType & {
   selectedId: string | null;
@@ -22,38 +23,47 @@ export function Transaction({
 }: TransactionProps) {
   const navigate = useNavigate();
   const { categoryType } = useParams();
+  const [isModalOpened, setIsModalOpened] = useState(false);
   const { mutate: deleteTransaction } = useDeleteTransactionMutation(id);
 
   return (
-    <Container>
-      <InfoContainer>
-        <NameContainer>
-          <Text fontSize="xl" bold>
-            {description}
-          </Text>
-          <Text>{isoDateToLocalDate(date)}</Text>
-        </NameContainer>
-        <ValueContainer>
-          <Text>R$ {formatMoney(value)}</Text>
-          <MenuIcon />
-        </ValueContainer>
-      </InfoContainer>
-      {selectedId === id && (
-        <>
-          {note && <Note>{note}</Note>}
-          <IconsContainer>
-            <MdClear onClick={() => deleteTransaction()} />
-            <MdEdit
-              onClick={() =>
-                navigate(
-                  `/${categoryType}/editar?id=${id}&description=${description}&value=${value}&date=${date}&note=${note}&categoryId=${categoryId}`
-                )
-              }
-            />
-          </IconsContainer>
-        </>
+    <>
+      <Container>
+        <InfoContainer>
+          <NameContainer>
+            <Text fontSize="xl" bold>
+              {description}
+            </Text>
+            <Text>{isoDateToLocalDate(date)}</Text>
+          </NameContainer>
+          <ValueContainer>
+            <Text>R$ {formatMoney(value)}</Text>
+            <MenuIcon />
+          </ValueContainer>
+        </InfoContainer>
+        {selectedId === id && (
+          <>
+            {note && <Note>{note}</Note>}
+            <IconsContainer>
+              <MdClear onClick={() => setIsModalOpened(!isModalOpened)} />
+              <MdEdit
+                onClick={() =>
+                  navigate(
+                    `/${categoryType}/editar?id=${id}&description=${description}&value=${value}&date=${date}&note=${note}&categoryId=${categoryId}`
+                  )
+                }
+              />
+            </IconsContainer>
+          </>
+        )}
+      </Container>
+      {isModalOpened && (
+        <ConfirmModal
+          onConfirm={deleteTransaction}
+          onCancel={() => setIsModalOpened(!isModalOpened)}
+        />
       )}
-    </Container>
+    </>
   );
 }
 
