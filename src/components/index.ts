@@ -11,3 +11,4 @@ export * from './NavButton';
 export * from './Text';
 export * from './Title';
 export * from './SideMenuButton';
+export * from './ConfirmModal';
