@@ -66,6 +66,7 @@ npm run storybook
 
 - [x] Cadastro do usuário;
 - [x] Login na aplicação;
+- [x] Logout;
 - [x] Refresh token;
 - [ ] Recuperação de senha;
 - [ ] Memorização da senha;
@@ -77,3 +78,4 @@ npm run storybook
 - [ ] Criação de categorias;
 - [ ] Edição de categorias;
 - [ ] Deleção de categorias;
+- [ ] Trocar o tema da aplicação;
