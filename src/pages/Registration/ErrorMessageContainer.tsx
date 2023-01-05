@@ -12,8 +12,8 @@ export function ErrorMessageContainer({ isError, error }: ErrorContainerProps) {
   return (
     <Container>
       {isError &&
-        error?.response?.data?.details?.map((details) => (
-          <ErrorMessage>{details}</ErrorMessage>
+        error?.response?.data?.details?.map((details, index) => (
+          <ErrorMessage key={index}>{details}</ErrorMessage>
         ))}
       {error?.response?.status === 409 && (
         <ErrorMessage>Usuário já cadastrado.</ErrorMessage>
