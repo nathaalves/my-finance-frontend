@@ -24,6 +24,7 @@ export function useAccessTokenInterceptor() {
             return Promise.reject(error);
           }
         }
+        return Promise.reject(error);
       }
     );
   }
