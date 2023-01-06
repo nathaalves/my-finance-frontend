@@ -2,12 +2,18 @@ import styled from 'styled-components';
 import { MdExitToApp } from 'react-icons/md';
 import { Text } from './Text';
 import { useLogoutMutation } from '../hooks/mutations/useLogoutMutation';
+import { useAccessTokenInterceptor } from '../hooks/interceptors/useAccessTokenInterceptor';
 
 export function SideMenuButton() {
   const { mutate } = useLogoutMutation();
+  const { removeInterceptor } = useAccessTokenInterceptor();
 
+  function handleClick() {
+    removeInterceptor();
+    mutate();
+  }
   return (
-    <Container onClick={() => mutate()}>
+    <Container onClick={handleClick}>
       <ExitIcon />
       <Text>Sair</Text>
     </Container>
