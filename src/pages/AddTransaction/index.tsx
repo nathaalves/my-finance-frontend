@@ -11,7 +11,16 @@ export function AddTransaction() {
     note: '',
   });
 
-  const { mutate } = useAddTransactionMutation(form);
+  const { isLoading, isError, error, mutate } = useAddTransactionMutation(form);
 
-  return <HandleTransaction form={form} setForm={setForm} mutate={mutate} />;
+  return (
+    <HandleTransaction
+      form={form}
+      setForm={setForm}
+      isLoading={isLoading}
+      isError={isError}
+      error={error}
+      mutate={mutate}
+    />
+  );
 }

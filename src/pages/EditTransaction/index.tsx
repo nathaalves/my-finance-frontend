@@ -16,7 +16,19 @@ export function EditTransaction() {
 
   const id = searchParams.get('id') as string;
 
-  const { mutate } = useUpdateTransactionMutation(id, form);
+  const { isLoading, isError, error, mutate } = useUpdateTransactionMutation(
+    id,
+    form
+  );
 
-  return <HandleTransaction form={form} setForm={setForm} mutate={mutate} />;
+  return (
+    <HandleTransaction
+      form={form}
+      setForm={setForm}
+      isLoading={isLoading}
+      isError={isError}
+      error={error}
+      mutate={mutate}
+    />
+  );
 }
