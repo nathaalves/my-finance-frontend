@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { useAccessTokenQuery } from '../hooks/queries/useAccessTokenQuery';
 import { useAccessTokenInterceptor } from '../hooks/interceptors/useAccessTokenInterceptor';
+import { LoadingPage } from '../components/LoadingPage';
 
 export function PrivateRoute() {
   const { isSuccess } = useAccessTokenQuery();
@@ -10,5 +11,5 @@ export function PrivateRoute() {
     addInterceptor();
   }
 
-  return <>{isSuccess ? <Outlet /> : <></>}</>;
+  return <>{isSuccess ? <Outlet /> : <LoadingPage />}</>;
 }
