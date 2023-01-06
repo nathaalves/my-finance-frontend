@@ -9,3 +9,8 @@ export type TransactionBody = {
 export type TransactionType = TransactionBody & {
   id: string;
 };
+
+export type SchemaResponseError = {
+  message: string;
+  details: string[];
+};
