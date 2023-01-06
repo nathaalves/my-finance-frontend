@@ -28,7 +28,7 @@ const Logo = styled.h2`
   background-clip: text;
   -webkit-background-clip: text;
   font-family: ${({ theme }) => theme.text.fontFamily.logo};
-  font-size: 5rem;
+  font-size: 4rem;
   color: transparent;
 
   animation: gradient 1s infinite alternate;
