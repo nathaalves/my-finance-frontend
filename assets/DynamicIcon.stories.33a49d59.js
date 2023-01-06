@@ -1,0 +1,2 @@
+import{D as o}from"./DynamicIcon.78947e44.js";import"./index.f3ed82ce.js";import"./iframe.79b88d8a.js";import"./jsx-runtime.e48c0c92.js";const n={title:"Components/DynamicIcon",component:o,args:{name:"MdAdd"},argTypes:{name:{options:["MdAdd","MdRemove","MdEdit","MdDelete","MdSearch","MdClose","MdArrowBack","MdArrowForward"],control:{type:"select"}}}},a={},c=["Default"];export{a as Default,c as __namedExportsOrder,n as default};
+//# sourceMappingURL=DynamicIcon.stories.33a49d59.js.map

@@ -1,0 +1,2 @@
+import{L as t}from"./Label.796e1f49.js";import"./styled-components.browser.esm.b3a2174f.js";import"./index.f3ed82ce.js";import"./iframe.79b88d8a.js";const r={title:"Components/Label",component:t,args:{children:"Lorem ipsum...",fontSize:"sm"},argTypes:{fontSize:{options:["sm","base","lg","xl","2xl","3xl","4xl","5xl","6xl"],control:{type:"select"}}}},n={},a=["Default"];export{n as Default,a as __namedExportsOrder,r as default};
+//# sourceMappingURL=Label.stories.9c376742.js.map

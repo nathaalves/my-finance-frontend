@@ -1,0 +1,2 @@
+import{B as t}from"./Button.a1586a90.js";import"./styled-components.browser.esm.b3a2174f.js";import"./index.f3ed82ce.js";import"./iframe.79b88d8a.js";import"./jsx-runtime.e48c0c92.js";const n={title:"Components/Button",component:t,args:{children:"Lorem ipsum...",isActive:!0},argTypes:{isActive:{options:[!0,!1],control:{type:"radio"}}}},p={},m=["Default"];export{p as Default,m as __namedExportsOrder,n as default};
+//# sourceMappingURL=Button.stories.064fe4e2.js.map
